@@ -53,4 +53,10 @@ markdown_extensions:
 nav:
   - Home: index.md
   - Getting Started: getting-started.md
-  - Polyfea 101: polyfea-101.md
+  - Core Concepts:
+    - Introduction: core-concepts/introduction.md
+    - Web Components: core-concepts/webcomponents.md
+    - Kubernetes Custom Resources: core-concepts/customresources.md
+    - Browser-Side Loading: core-concepts/browsercore.md
+    - Display Rules: core-concepts/displayrules.md
+    - The Complete Flow: core-concepts/flow.md

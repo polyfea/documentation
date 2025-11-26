@@ -3,6 +3,14 @@ site_description: Project documentation site
 site_author: Polyfea Team
 site_url: https://polyfea.github.io/documentation
 
+# Repository integration
+repo_name: polyfea
+repo_url: https://github.com/polyfea
+
+# Custom CSS
+extra_css:
+  - stylesheets/extra.css
+
 theme:
   name: material
   
@@ -29,6 +37,7 @@ theme:
     - navigation.sections
     - navigation.expand
     - navigation.top
+    - navigation.footer  # Add prev/next navigation
     - search.suggest
     - search.highlight
     - content.tabs.link
@@ -64,3 +73,8 @@ nav:
     - Browser-Side Loading: core-concepts/browsercore.md
     - Display Rules: core-concepts/displayrules.md
     - The Complete Flow: core-concepts/flow.md
+  - Projects:
+    - projects/index.md
+    - Controller: https://github.com/polyfea/polyfea-controller
+    - Browser Core: https://github.com/polyfea/core
+    - NPM Package: https://www.npmjs.com/package/@polyfea/core

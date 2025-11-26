@@ -1,0 +1,13 @@
+/* Move the last navigation tab (Projects) to the right */
+.md-tabs__list {
+  display: flex;
+}
+
+.md-tabs__item:last-child {
+  margin-left: auto;
+}
+
+/* Optional: Add some spacing */
+.md-tabs__item:last-child {
+  margin-right: 1rem;
+}

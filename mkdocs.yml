@@ -76,5 +76,8 @@ nav:
   - Projects:
     - projects/index.md
     - Controller: https://github.com/polyfea/polyfea-controller
+    - Material Design Shell: https://github.com/polyfea/md-shell
     - Browser Core: https://github.com/polyfea/core
-    - NPM Package: https://www.npmjs.com/package/@polyfea/core
+    - Helm Charts: https://github.com/polyfea/charts
+    - Manifests: https://github.com/polyfea/manifests
+    

@@ -192,7 +192,7 @@ spec:
       - context-name: shell
 ```
 
-This will show a small iframe in the shell context area. With our chart repository as source. This is just a minimal example. In real world scenarios you would likely want to create a MicroFrontend that encapsulates more complex logic. How to do that is explained in other sections of the documentation (TBD).
+This will show a small iframe in the shell context area. With our chart repository as source. This is just a minimal example. In real world scenarios you would likely want to create a MicroFrontend that encapsulates more complex logic. How to do that is explained in [Tutorials](tutorials/introduction.md) section.
 
 Apply it:
 

@@ -73,6 +73,11 @@ nav:
     - Browser-Side Loading: core-concepts/browsercore.md
     - Display Rules: core-concepts/displayrules.md
     - The Complete Flow: core-concepts/flow.md
+  - Tutorials:
+    - Introduction: tutorials/introduction.md
+    - Building a Web Component: tutorials/webcomponents.md
+    - Building a MicroFrontend Image: tutorials/docker-image.md
+    - Creating Kubernetes Manifests: tutorials/k8s-manifests.md
   - Projects:
     - projects/index.md
     - Controller: https://github.com/polyfea/polyfea-controller

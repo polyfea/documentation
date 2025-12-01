@@ -23,7 +23,15 @@ In your project directory (from the previous tutorial), create a `Dockerfile`:
 # Use nginx alpine image for lightweight serving
 FROM nginx:alpine
 
-COPY dist/webcomponents.bundled.js /usr/share/nginx/html/webcomponents.bundled.js
+# Copy bundled web components
+COPY my-element.js /usr/share/nginx/html/my-element.js
+COPY my-tile-element.js /usr/share/nginx/html/my-tile-element.js
+
+# Copy lit library files for import maps
+COPY node_modules/lit /usr/share/nginx/html/node_modules/lit
+COPY node_modules/lit-html /usr/share/nginx/html/node_modules/lit-html
+COPY node_modules/lit-element /usr/share/nginx/html/node_modules/lit-element
+COPY node_modules/@lit /usr/share/nginx/html/node_modules/@lit
 
 # Expose port 80
 EXPOSE 80
@@ -47,6 +55,9 @@ Optimize your build by excluding unnecessary files. Create `.dockerignore` in th
 node_modules/*
 !node_modules/@webcomponents
 !node_modules/lit
+!node_modules/@lit
+!node_modules/lit-html
+!node_modules/lit-element
 src/
 test/
 docs/
@@ -59,6 +70,7 @@ rollup.config.js
 web-dev-server.config.js
 web-test-runner.config.js
 package-lock.json
+
 ```
 
 ### Why .dockerignore?

@@ -146,7 +146,7 @@ metadata:
 spec:
   baseUri: "/myapp"
   title: "My Application"
-  cspHeader: "default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' data:; font-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'"
+  cspHeader: "default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'self'; img-src 'self' data:; font-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'"
 ```
 
 ### MicroFrontendClass Explained
@@ -160,30 +160,74 @@ spec:
 
 ## Step 7: Create the MicroFrontend Resource
 
+We didn't do any bundling in this tutorial, so we'll create two MicroFrontend resources for each of our web components.
+
 Create `my-element-mf.yaml`:
 
 ```yaml
 apiVersion: polyfea.github.io/v1alpha1
 kind: MicroFrontend
 metadata:
-  name: my-webcomponent
+  name: my-element
   namespace: microfrontends
   labels:
-    app.kubernetes.io/name: my-webcomponent
+    app.kubernetes.io/name: my-element
     app.kubernetes.io/instance: microfrontends
     app.kubernetes.io/version: "1.0"
 spec:
   frontendClass: my-app
   service:
     name: my-webcomponent-service
-  modulePath: webcomponents.bundled.js
+  modulePath: my-element.js
+  importMap:
+    imports:
+      lit: /node_modules/lit/index.js
+      lit/decorators.js: /node_modules/lit/decorators.js
+      lit/: /node_modules/lit/
+      lit-html: /node_modules/lit-html/lit-html.js
+      lit-html/: /node_modules/lit-html/
+      lit-element/lit-element.js: /node_modules/lit-element/lit-element.js
+      "@lit/reactive-element": /node_modules/@lit/reactive-element/reactive-element.js
+      "@lit/reactive-element/": /node_modules/@lit/reactive-element/
 ```
+
+Create `my-tile-element-mf.yaml`:
+
+```yaml
+apiVersion: polyfea.github.io/v1alpha1
+kind: MicroFrontend
+metadata:
+  name: my-tile-element
+  namespace: microfrontends
+  labels:
+    app.kubernetes.io/name: my-tile-element
+    app.kubernetes.io/instance: microfrontends
+    app.kubernetes.io/version: "1.0"
+spec:
+  frontendClass: my-app
+  service:
+    name: my-webcomponent-service
+  modulePath: my-tile-element.js
+  # Should not conflict with the previous import map but we can also not include it as it is already defined
+  importMap:
+    imports:
+      lit: /node_modules/lit/index.js
+      lit/decorators.js: /node_modules/lit/decorators.js
+      lit/: /node_modules/lit/
+      lit-html: /node_modules/lit-html/lit-html.js
+      lit-html/: /node_modules/lit-html/
+      lit-element/lit-element.js: /node_modules/lit-element/lit-element.js
+      "@lit/reactive-element": /node_modules/@lit/reactive-element/reactive-element.js
+      "@lit/reactive-element/": /node_modules/@lit/reactive-element/
+```
+
 
 ### MicroFrontend Configuration
 
 - **frontendClass**: Links to the `my-app` MicroFrontendClass
 - **service**: References the Kubernetes Service that serves the web components
 - **modulePath**: Path to the JavaScript module within the nginx server (relative to the service root)
+- **importMap**: Defines module paths for dependencies, ensuring correct resolution in the Polyfea runtime
 
 ## Step 8: Create the Shell WebComponent
 
@@ -196,7 +240,7 @@ metadata:
   name: my-element
   namespace: microfrontends
 spec:
-  microFrontend: my-webcomponent
+  microFrontend: my-element
   element: my-element
   displayRules:
     - anyOf:
@@ -220,7 +264,7 @@ metadata:
   name: my-left-tile
   namespace: microfrontends
 spec:
-  microFrontend: my-webcomponent
+  microFrontend: my-tile-element
   element: my-tile
   attributes:
     - name: text
@@ -235,7 +279,7 @@ metadata:
   name: my-right-tile
   namespace: microfrontends
 spec:
-  microFrontend: my-webcomponent
+  microFrontend: my-tile-element
   element: my-tile
   attributes:
     - name: text

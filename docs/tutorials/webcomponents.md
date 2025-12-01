@@ -207,64 +207,13 @@ npm run start
 
 ## Step 6: Build the Project
 
-Build the components for production:
+We will use minimal build configuration since we want to showcase the import maps feature of modern browsers and also how it is implemented in Polyfea.
 
-We will do a little bit of hacking here to set up rollup for bundling our components.
-We want to simplify it for the purpose of this tutorial.
-
-So first create a file in the root of your project named `index.ts` with the following content:
-
-```typescript
-// Entry point that exports all web components
-export { MyElement } from './my-element.js';
-export { MyTile } from './my-tile-element.js';
-```
-
-Install rollup if not already installed:
+Build the project:
 
 ```bash
-npm install --save-dev rollup \
-  @web/rollup-plugin-html \
-  @web/rollup-plugin-copy \
-  @rollup/plugin-node-resolve \
-  @rollup/plugin-terser \
-  rollup-plugin-minify-html-literals \
-  rollup-plugin-summary
+npm run build
 ```
-
-We need to add a rollup configuration to bundle our components properly. Create or update `rollup.config.js` with the following content:
-
-```javascript
-import resolve from '@rollup/plugin-node-resolve';
-import { eventOptions } from 'lit/decorators.js';
-import summary from 'rollup-plugin-summary';
-
-export default {
-  input: 'index.js',
-  output: {
-    file: 'dist/webcomponents.bundled.js',
-    format: 'esm',
-  },
-  plugins: [
-    // Resolve bare module specifiers to relative paths and bundle dependencies
-    resolve(),
-    // Print bundle summary
-    summary(),
-  ],
-};
-```
-
-This configuration simply bundles our components and their dependencies into a single file.
-
-Run the build:
-
-```bash
-npx rollup -c
-```
-
-This will generate a bundled file at `dist/webcomponents.bundled.js` containing both `my-element` and `my-tile` components along with their dependencies.
-
-Building like this is not optimal for production use, but it works for our tutorial purposes. Currently polyfea does not support import maps so we need to bundle everything into a single file. This tutorial will be updated in the future when polyfea supports import maps.
 
 ## What's Next?
 

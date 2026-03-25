@@ -180,7 +180,7 @@ spec:
     name: my-webcomponent-service
   modulePath: my-element.js
   importMap:
-    imports:
+    optional:
       lit: /node_modules/lit/index.js
       lit/decorators.js: /node_modules/lit/decorators.js
       lit/: /node_modules/lit/
@@ -208,9 +208,10 @@ spec:
   service:
     name: my-webcomponent-service
   modulePath: my-tile-element.js
-  # Should not conflict with the previous import map but we can also not include it as it is already defined
+  # optional entries are silently skipped if already registered (first-registered-wins),
+  # so this can be omitted if my-element-mf.yaml is deployed first
   importMap:
-    imports:
+    optional:
       lit: /node_modules/lit/index.js
       lit/decorators.js: /node_modules/lit/decorators.js
       lit/: /node_modules/lit/
@@ -227,7 +228,7 @@ spec:
 - **frontendClass**: Links to the `my-app` MicroFrontendClass
 - **service**: References the Kubernetes Service that serves the web components
 - **modulePath**: Path to the JavaScript module within the nginx server (relative to the service root)
-- **importMap**: Defines module paths for dependencies, ensuring correct resolution in the Polyfea runtime
+- **importMap**: Defines module paths for dependencies. `optional` entries go into the global import map (first-registered-wins; duplicates are silently skipped). `scoped` entries are placed under the MF's proxy-path scope automatically.
 
 ## Step 8: Create the Shell WebComponent
 

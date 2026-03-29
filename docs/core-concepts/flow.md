@@ -40,7 +40,8 @@ metadata:
   name: app-shell
 spec:
   element: "polyfea-md-shell"
-  microFrontend: shell-module
+  microFrontend: 
+    name: shell-module
   displayRules:
     - contexts:
         - name: shell
@@ -53,7 +54,8 @@ kind: MicroFrontend
 metadata:
   name: shell-module
 spec:
-  frontendClass: my-app
+  frontendClass: 
+    name: my-app
   service:
     name: shell-service
   modulePath: "/dist/shell.esm.js"

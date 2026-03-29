@@ -175,7 +175,8 @@ metadata:
     app.kubernetes.io/instance: microfrontends
     app.kubernetes.io/version: "1.0"
 spec:
-  frontendClass: my-app
+  frontendClass: 
+    name: my-app
   service:
     name: my-webcomponent-service
   modulePath: my-element.js
@@ -204,7 +205,8 @@ metadata:
     app.kubernetes.io/instance: microfrontends
     app.kubernetes.io/version: "1.0"
 spec:
-  frontendClass: my-app
+  frontendClass: 
+    name: my-app
   service:
     name: my-webcomponent-service
   modulePath: my-tile-element.js
@@ -241,7 +243,8 @@ metadata:
   name: my-element
   namespace: microfrontends
 spec:
-  microFrontend: my-element
+  microFrontend: 
+    name: my-element
   element: my-element
   displayRules:
     - anyOf:
@@ -265,7 +268,8 @@ metadata:
   name: my-left-tile
   namespace: microfrontends
 spec:
-  microFrontend: my-tile-element
+  microFrontend: 
+    name: my-tile-element
   element: my-tile
   attributes:
     - name: text
@@ -280,7 +284,8 @@ metadata:
   name: my-right-tile
   namespace: microfrontends
 spec:
-  microFrontend: my-tile-element
+  microFrontend: 
+    name: my-tile-element
   element: my-tile
   attributes:
     - name: text

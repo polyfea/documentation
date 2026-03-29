@@ -61,7 +61,9 @@ metadata:
   name: user-module
   namespace: team-a
 spec:
-  frontendClass: my-app
+  frontendClass: 
+    name: my-app
+    namespace: platform
   modulePath: "/dist/user.esm.js"
   service:
     name: user-service
@@ -92,7 +94,8 @@ metadata:
   namespace: team-a
 spec:
   element: user-nav-item
-  microFrontend: user-module
+  microFrontend: 
+    name: user-module
   displayRules:
     allOf:
     - context-name: navigation
@@ -154,7 +157,9 @@ metadata:
   name: unauthorized-mfe
   namespace: team-c  # ❌ Not in allowed list
 spec:
-  frontendClass: my-app
+  frontendClass: 
+    name: my-app
+    namespace: platform
 ```
 
 **Controller action:**

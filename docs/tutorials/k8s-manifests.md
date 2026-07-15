@@ -142,7 +142,6 @@ apiVersion: polyfea.github.io/v1alpha1
 kind: MicroFrontendClass
 metadata:
   name: my-app
-  namespace: microfrontends
 spec:
   baseUri: "/myapp"
   title: "My Application"
@@ -241,7 +240,8 @@ metadata:
   name: my-element
   namespace: microfrontends
 spec:
-  microFrontend: my-element
+  microFrontend:
+    name: my-element
   element: my-element
   displayRules:
     - anyOf:
@@ -265,7 +265,8 @@ metadata:
   name: my-left-tile
   namespace: microfrontends
 spec:
-  microFrontend: my-tile-element
+  microFrontend:
+    name: my-tile-element
   element: my-tile
   attributes:
     - name: text
@@ -280,7 +281,8 @@ metadata:
   name: my-right-tile
   namespace: microfrontends
 spec:
-  microFrontend: my-tile-element
+  microFrontend:
+    name: my-tile-element
   element: my-tile
   attributes:
     - name: text
@@ -329,7 +331,7 @@ kubectl get pods -n microfrontends
 kubectl get svc -n microfrontends
 
 # Check Polyfea resources
-kubectl get microfrontendclass -n microfrontends
+kubectl get microfrontendclass
 kubectl get microfrontend -n microfrontends
 kubectl get webcomponent -n microfrontends
 ```

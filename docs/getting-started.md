@@ -152,7 +152,6 @@ apiVersion: polyfea.github.io/v1alpha1
 kind: MicroFrontendClass
 metadata:
   name: my-app
-  namespace: polyfea
 spec:
   baseUri: "/app"
   title: "My Application"
@@ -205,8 +204,8 @@ kubectl apply -f my-iframe.yaml
 Check the status of your resources:
 
 ```bash
-# Check MicroFrontendClass
-kubectl get microfrontendclasses -n polyfea
+# Check MicroFrontendClass (cluster-scoped)
+kubectl get microfrontendclasses
 
 # Check WebComponents
 kubectl get webcomponents -n polyfea
@@ -264,7 +263,8 @@ To remove Polyfea:
 
 ```bash
 # 1. Delete all custom resources first
-kubectl delete microfrontendclass,microfrontend,webcomponent --all-namespaces --all
+kubectl delete microfrontendclass --all
+kubectl delete microfrontend,webcomponent --all --all-namespaces
 
 # 2. Uninstall the Helm releases
 helm uninstall polyfea-samples -n polyfea

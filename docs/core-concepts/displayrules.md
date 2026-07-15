@@ -8,7 +8,7 @@ Within a single display rule, there are three matcher lists that work together w
 displayRules:
   # Rule 1: Show in navigation context for users with specific roles
   - allOf:
-      - contextName: navigation
+      - context-name: navigation
     anyOf:
       - role: user
       - role: admin
@@ -17,7 +17,7 @@ displayRules:
   
   # Rule 2: Show in drawer context on specific paths
   - allOf:
-      - contextName: drawer
+      - context-name: drawer
       - path: "^/dashboard/.*"
 ```
 
@@ -40,7 +40,7 @@ Each matcher can check three properties:
 **1. Context Name** - Where the `polyfea-context` element is located
 ```yaml
 allOf:
-  - contextName: navigation  # Exact match
+  - context-name: navigation  # Exact match
 ```
 
 **2. Path** - URL path as a regular expression
@@ -62,7 +62,7 @@ anyOf:
 ```yaml
 displayRules:
   - allOf:
-      - contextName: navigation
+      - context-name: navigation
       - role: admin
 ```
 Shows only if context is "navigation" AND user has "admin" role.
@@ -71,7 +71,7 @@ Shows only if context is "navigation" AND user has "admin" role.
 ```yaml
 displayRules:
   - allOf:
-      - contextName: toolbar
+      - context-name: toolbar
     anyOf:
       - role: admin
       - role: editor
@@ -85,11 +85,11 @@ Shows if context is "toolbar" AND (user is admin OR editor) AND path doesn't sta
 displayRules:
   # Show in desktop navigation for all users
   - allOf:
-      - contextName: navigation
+      - context-name: navigation
   
   # Or show in mobile menu for authenticated users
   - allOf:
-      - contextName: mobile-menu
+      - context-name: mobile-menu
     anyOf:
       - role: user
       - role: admin
@@ -101,7 +101,7 @@ Shows if EITHER rule matches (context is "navigation" OR context is "mobile-menu
 displayRules:
   # Show settings only on settings pages
   - allOf:
-      - contextName: sidebar
+      - context-name: sidebar
       - path: "^/settings/.*"
 ```
 

@@ -31,7 +31,6 @@ apiVersion: polyfea.github.io/v1alpha1
 kind: MicroFrontendClass
 metadata:
   name: my-app
-  namespace: platform
 spec:
   baseUri: "/app"
   title: "My Application"
@@ -70,7 +69,7 @@ spec:
     - shared-components
   staticPaths:
     - kind: stylesheet
-      href: "/dist/styles.css"
+      path: "/dist/styles.css"
 ```
 
 **Purpose:**
@@ -92,13 +91,16 @@ metadata:
   namespace: team-a
 spec:
   element: user-nav-item
-  microFrontend: user-module
+  microFrontend:
+    name: user-module
   displayRules:
-    allOf:
-    - context-name: navigation
+    - allOf:
+      - context-name: navigation
   attributes:
-    label: "Profile"
-    icon: "person"
+    - name: label
+      value: "Profile"
+    - name: icon
+      value: "person"
 ```
 
 **Purpose:**
@@ -136,7 +138,7 @@ When you create or update resources, the controller:
 The controller enforces multi-tenancy through namespace policies:
 
 ```yaml
-# MicroFrontendClass in platform namespace
+# Cluster-scoped MicroFrontendClass
 namespacePolicy:
   from: FromNamespaces
   namespaces:

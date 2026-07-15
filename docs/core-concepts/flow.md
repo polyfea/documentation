@@ -40,10 +40,11 @@ metadata:
   name: app-shell
 spec:
   element: "polyfea-md-shell"
-  microFrontend: shell-module
+  microFrontend:
+    name: shell-module
   displayRules:
-    - contexts:
-        - name: shell
+    - anyOf:
+      - context-name: shell
 ```
 
 ```yaml
